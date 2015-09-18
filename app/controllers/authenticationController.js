@@ -17,4 +17,15 @@ app.controller('authenticationController', function ($scope, authenticationServi
             console.log('Login modal dismissed at: ' + new Date());
         });
     };
+
+    $scope.logout = function () {
+        authenticationService.logout()
+            .then(function (success) {
+                console.log('Logged out.');
+                $scope.invalid = false;
+                $scope.username = null;
+            }, function (reason) {
+                console.log('error logging out: ' + reason);
+            });
+    };
 });

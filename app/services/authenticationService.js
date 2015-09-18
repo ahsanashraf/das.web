@@ -43,12 +43,41 @@ app.factory('authenticationService', function ($http, $q) {
 
     var _logout = function()
     {
-        var requestUri = "http://10.0.11.231/das.api/api/Authentication/Logout";
+        console.log('logging out with token ' + token);
+        //var requestUri = "http://10.0.11.231/das.api/api/Authentication/Logout";
+        var requestUri = "http://localhost/NARA.DAS.API/api/Authentication/Logout";
+
+        var deferred = $q.defer();
+        var req = {
+            method: 'GET',
+            url: requestUri,
+            headers: {
+                'Authorization': 'token ' + token
+            }
+        };
+
+        $http(req)
+            .then(function (response) {
+                if (response.data) {
+                    console.log(userContext + ' is logged out.');
+                    userContext = null;
+                    token = null;
+                    deferred.resolve(true);
+                }
+                else {
+                    deferred.reject('Logout unsucessful');
+                }
+            }, function (response) {
+                console.log(response.status);
+                deferred.reject(response.statusText);
+            });
+        return deferred.promise;
     }
 
     authenticationFactory.getUserContext = _getUserContext;
     authenticationFactory.setUserContext = _setUserContext;
     authenticationFactory.login = _login;
+    authenticationFactory.logout = _logout;
 
     return authenticationFactory;
 });

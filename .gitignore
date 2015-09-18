@@ -41,3 +41,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+bin/NARA.DAS.Web.dll
+bin/NARA.DAS.Web.pdb
+obj/Debug/NARA.DAS.Web.dll
+obj/Debug/NARA.DAS.Web.pdb
