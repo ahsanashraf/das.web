@@ -1,0 +1,18 @@
+﻿<div class="row" style="margin: 50px">
+    <div class="col-md-12">
+        <form class="form-signin">
+            <div class="form-group">
+                <label for="inputUser" class="sr-only">Username</label>
+                <input type="text" id="inputUser" class="form-control" data-ng-model="username" placeholder="Username" required autofocus />
+            </div>
+            <div class="form-group">
+                <label for="inputPass" class="sr-only">Password</label>
+                <input type="password" id="inputPass" class="form-control" data-ng-model="password" placeholder="Password" required />
+            </div>
+            <div style="min-height: 30px">
+                <p class="text-danger" data-ng-show="invalid == true">Invalid Username/Password</p>
+            </div>
+            <button class="btn btn-lg btn-primary" data-ng-disabled="username == null || password == null" data-ng-click="login()">Sign in</button>
+        </form>
+    </div>
+</div>
